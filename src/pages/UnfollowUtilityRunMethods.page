@@ -1,0 +1,40 @@
+<apex:page Controller="UnfollowUtilityRunDelayMethods" title="Utility Page - Run Delayed Methods">
+    <apex:sectionHeader title="Run Unfollow Methods"  help="https://sites.secure.force.com/appexchange/servlet/servlet.FileDownload?file=00P30000006AooFEAS"/>
+    
+    
+  <apex:form >
+    <script>
+        function confirmation() {
+            var answer= confirm('This will run the class - are you sure?');
+            if(answer)
+                alert('Confirmation: Class Run')
+            return answer;
+        }
+    </script> 
+
+  <apex:pageBlock id="thePageBlock"  >
+
+        <apex:pageBlockButtons >
+            <apex:commandButton id="RunUnfollowExecute" value="Queue All Batch Jobs (non-delay & delay)" action="{!runQueueBatchJobs}" onclick="if (!confirmation()) return false;" />
+            <apex:commandButton id="RunDelayBatchJob" value="Unfollow Records Scheduled for Today " action="{!runQueueDelayBatchJob}" onclick="if (!confirmation()) return false;"/>
+            <apex:commandButton id="RunTryBatchJobsAgain" value="Try Batch Jobs Again" action="{!runTryBatchJobsAgain}" onclick="if (!confirmation()) return false;"/>
+
+                 
+        </apex:pageBlockButtons>    
+    <DIV ALIGN="CENTER">
+        <a target='_blank' href="https://na3.salesforce.com/setup/ui/listApexTraces.apexp">Debug Log</a>
+        <br/>
+        <br/>
+        <a target='_blank' href="https://na3.salesforce.com/setup/ui/listApexTraces.apexp?user_id=00550000001DfsI&user_logging=true">Add more to debug log limit</a>
+        <br/>
+        <br/>
+        <a target='_blank' href="https://na3.salesforce.com/apexpages/setup/listAsyncApexJobs.apexp?retURL=/ui/setup/Setup%3Fsetupid%3DMonitoring&setupid=AsyncApexJobs">View Batch Jobs</a>
+        <br/>
+        <br/>
+        <a target='_blank' href="https://na3.salesforce.com/08e?retURL=/ui/setup/Setup%3Fsetupid%3DMonitoring&setupid=ScheduledJobs">View Scheduled Apex</a>
+        <br/>
+        <br/>
+    </div>     
+  </apex:pageBlock>
+    </apex:form>
+</apex:page>
